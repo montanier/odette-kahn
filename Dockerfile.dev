@@ -5,9 +5,15 @@ RUN apt-get -y upgrade
 RUN apt-get install -y sqlite3 libsqlite3-dev
 RUN apt-get install -y python3 python3-pip
 
-RUN pip install ipython pandas flask scikit-learn
+RUN pip install ipython pandas flask scikit-learn pytest
 # RUN pip3 install notebook
 
 RUN mkdir /src
 RUN mkdir /db
 RUN mkdir /models
+
+WORKDIR /src
+
+COPY odette_kahn /src/odette_kahn
+COPY setup.py /src/setup.py
+RUN pip install -e .

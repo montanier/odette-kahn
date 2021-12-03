@@ -18,5 +18,4 @@ def predict_from_name(wine_name: str):
     properties, quality = db.get_wine_properties_and_quality(wine_name, properties_names)
     predict = model.predict(np.array(properties).reshape(1, -1))[0]
     answer = dict(zip(properties_names + ['predicted'], properties + [quality] + [predict]))
-    print(answer)
     return answer

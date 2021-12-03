@@ -4,7 +4,12 @@ build-dev:
 run-dev:
 	export DB_PATH='/db/'
 	export MODELS_PATH='/models'
-	docker run -it -v `pwd`/db:/db -v `pwd`:/src -v `pwd`/models:/models -e DB_PATH -e MODELS_PATH -p 8000:8000 dev
+	docker run -it -v `pwd`/db:/db -v `pwd`:/src -v `pwd`/models:/models -e DB_PATH -e MODELS_PATH -p 8000:8000 dev /bin/bash
+
+test:
+	export DB_PATH='/db/'
+	export MODELS_PATH='/models'
+	docker run -it -v `pwd`/db:/db -v `pwd`:/src -v `pwd`/models:/models -e DB_PATH -e MODELS_PATH dev pytest
 
 build-prod:
 	docker build -t prod .
