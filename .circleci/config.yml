@@ -7,6 +7,7 @@ jobs:
       - run:
           name: "run tests"
           command: |
+            pip install -e .
             export DB_PATH=/root/project/db
             export MODELS_PATH=/root/project/models
             pytest
