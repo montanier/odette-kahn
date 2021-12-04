@@ -21,6 +21,12 @@ def close_db(e=None):
 
 
 def get_wine_properties_and_quality(wine_name, properties_names):
+    """
+    Return requested properies of a given wine from the db
+    :param wine_name: name of the wine for which we want to query properties
+    :param properties_names: properties to fetch for the targeted wine
+    :return: a dict with the requested wine's properties
+    """
     conn = get_db()
     query = f"select {','.join(properties_names)} from WINE where name = '{wine_name}'"
     cursor = conn.execute(query)
