@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "run tests"
-        command: |
-          export DB_PATH=/root/project/db
-          export MODELS_PATH=/root/project/models
-          pytest
+          name: "run tests"
+          command: |
+            export DB_PATH=/root/project/db
+            export MODELS_PATH=/root/project/models
+            pytest
