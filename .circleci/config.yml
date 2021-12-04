@@ -1,0 +1,7 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: montanier/odette-kahn-dev:0.1.0
+    steps:
+      - checkout
