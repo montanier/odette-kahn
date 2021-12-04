@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  odette_kahn_dev:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - {type: bind, source: ./db, target: /db}
+      - {type: bind, source: ./models, target: /models}
+      - {type: bind, source: ., target: /src}
+    environment:
+      - DB_PATH
+      - MODELS_PATH
+
+  odette_kahn_prod:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - {type: bind, source: ./db, target: /db}
+      - {type: bind, source: ./models, target: /models}
+    environment:
+      - DB_PATH
+      - MODELS_PATH
