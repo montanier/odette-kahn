@@ -22,6 +22,5 @@ make query-name
 
 The second option will query the API with a list of wine properties. We will get in return the predicted quality of the wine:
 ```
-```
 make query-predict
 ```
