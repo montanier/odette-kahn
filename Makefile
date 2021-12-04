@@ -1,5 +1,5 @@
 build-dev:
-	docker-compose -f docker-compose.dev.yml build odette_kahn_dev
+	docker-compose -f docker-compose.yml build odette_kahn_dev
 
 run-dev:
 	export DB_PATH='/db/'
@@ -11,9 +11,11 @@ test:
 	export MODELS_PATH='/models'
 	docker-compose run --rm odette_kahn_dev pytest
 
+notebook:
+	docker-compose run --service-ports --rm odette_kahn_dev jupyter notebook --ip 0.0.0.0 --port 8888 --no-browser --allow-root
+
 build-prod:
-	#docker build -t prod .
-	docker-compose -f docker-compose.dev.yml build odette_kahn_prod
+	docker-compose -f docker-compose.yml build odette_kahn_prod
 
 run-prod:
 	export DB_PATH='/db/'

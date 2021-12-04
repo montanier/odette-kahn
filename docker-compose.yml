@@ -7,6 +7,7 @@ services:
       dockerfile: docker/Dockerfile.dev
     ports:
       - "8000:8000"
+      - "8888:8888"
     volumes:
       - {type: bind, source: ./db, target: /db}
       - {type: bind, source: ./models, target: /models}
