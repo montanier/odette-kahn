@@ -21,9 +21,11 @@ def predict_from_name(wine_name: str):
     """
     model = joblib.load(MODELS_PATH + "/wine_sdg_model.pkl")
     properties, quality = db.get_wine_properties_and_quality(wine_name, properties_names + ["quality"])
-    predict = model.predict(np.array(properties).reshape(1, -1))[0]
-    answer = dict(zip(properties_names + ['quality', 'predicted'], properties + [quality, predict]))
-    return answer
+    if properties and quality:
+        predict = model.predict(np.array(properties).reshape(1, -1))[0]
+        answer = dict(zip(properties_names + ['quality', 'predicted'], properties + [quality, predict]))
+        return answer
+    return {}
 
 
 def predict_from_properties(properties: dict):

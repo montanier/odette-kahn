@@ -26,6 +26,21 @@ def test_predict_from_name_calls_expected_methods(mock_db, mock_joblib):
 
 
 @patch("odette_kahn.model.predict.joblib")
+@patch("odette_kahn.model.predict.db")
+def test_predict_from_name_calls_return_empty_for_unknown_wine(mock_db, mock_joblib):
+    # Given
+    mock_db.get_wine_properties_and_quality.return_value = (None, None)
+    mock_model = Mock()
+    mock_joblib.load.return_value = mock_model
+
+    # When
+    answer = predict.predict_from_name("wine name")
+
+    # Then
+    assert answer == {}
+
+
+@patch("odette_kahn.model.predict.joblib")
 def test_predict_from_properties_calls_expected_methods(mock_joblib):
     # Given
     properties = {key: 42 for key in predict.properties_names}
