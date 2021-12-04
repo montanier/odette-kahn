@@ -1,6 +1,5 @@
-version: 2
 jobs:
-  tests:
+  test:
     docker:
       - image: montanier/odette-kahn-dev:0.1.0
     steps:
@@ -11,3 +10,9 @@ jobs:
             export DB_PATH=/root/project/db
             export MODELS_PATH=/root/project/models
             pytest
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
