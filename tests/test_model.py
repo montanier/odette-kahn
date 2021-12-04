@@ -23,7 +23,6 @@ def test_predict_from_name_calls_expected_methods(mock_db, mock_joblib):
     assert answer.pop('predicted') == prediction
     properties_values = [val for val in answer.values()]
     assert all(property_val == 42 for property_val in properties_values)
-    assert False
 
 
 @patch("odette_kahn.model.predict.joblib")
