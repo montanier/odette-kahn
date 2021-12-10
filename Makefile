@@ -2,14 +2,10 @@ build-dev:
 	docker-compose -f docker-compose.yml build odette_kahn_dev
 
 run-dev:
-	export DB_PATH='/db/'
-	export MODELS_PATH='/models'
-	docker-compose run --service-ports --rm odette_kahn_dev bash
+	(export DB_PATH='/db/wine.db'; export MODELS_PATH='/models'; docker-compose run --service-ports --rm odette_kahn_dev bash)
 
 test:
-	export DB_PATH='/db/'
-	export MODELS_PATH='/models'
-	docker-compose run --rm odette_kahn_dev pytest
+	(export DB_PATH='/db/wine.db'; export MODELS_PATH='/models'; docker-compose run --rm odette_kahn_dev pytest)
 
 notebook:
 	docker-compose run --service-ports --rm odette_kahn_dev jupyter notebook --ip 0.0.0.0 --port 8888 --no-browser --allow-root
@@ -18,9 +14,7 @@ build-prod:
 	docker-compose -f docker-compose.yml build odette_kahn_prod
 
 run-prod:
-	export DB_PATH='/db/'
-	export MODELS_PATH='/models'
-	docker-compose run --service-ports --rm odette_kahn_prod
+	(export DB_PATH='/db/wine.db'; export MODELS_PATH='/models'; docker-compose run --service-ports --rm odette_kahn_prod)
 
 query-name:
 	 curl -i -X GET -d "{\"name\": \"Louis Jadot 2012  Macon-Villages\"}" http://127.0.0.1:8000/wine -H 'Content-Type: application/json'
